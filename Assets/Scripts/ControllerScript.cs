@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class ControllerScript : MonoBehaviour {
 
@@ -18,6 +19,8 @@ public class ControllerScript : MonoBehaviour {
     public int score_int; //score update
     public GUIText restart;
     public GUIText gameOver;
+    public GUIText shield;
+    public GUIText start;
 
     private bool playerAlive;
     private bool restartGame;
@@ -38,6 +41,7 @@ public class ControllerScript : MonoBehaviour {
         restartGame = false;
         restart.text = ""; //clear on start
         gameOver.text = "";
+        shield.text = "";
 
         score_int = 0;
         ScoreUpdate();
@@ -55,6 +59,7 @@ public class ControllerScript : MonoBehaviour {
     {
         while (playerAlive == true)
         {
+            // increase score by 1 for every second alive 
             yield return new WaitForSeconds(1);
             score_int++;
             ScoreUpdate();
@@ -65,6 +70,8 @@ public class ControllerScript : MonoBehaviour {
     {
         gameOver.text = "GAME OVER!";
         playerAlive = false;
+        restart.text = "Press Space to Restart";
+        restartGame = true;
     }
 
 
@@ -103,12 +110,6 @@ public class ControllerScript : MonoBehaviour {
 
 
         }
-        if (playerAlive == false)
-        {
-            restart.text = "Press Space to Restart";
-            restartGame = true;
-            
-        }
     }
 
     IEnumerator SpawnEnemyBomber()
@@ -137,11 +138,13 @@ public class ControllerScript : MonoBehaviour {
 
     void Update()
     {
-        if (restartGame)
+        if (restartGame == true)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Application.LoadLevel(Application.loadedLevel); //ignore for now, even if obsolete 
+              //  SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
             }
         }
     }
@@ -169,10 +172,25 @@ public class ControllerScript : MonoBehaviour {
         score.text = "Score: " + score_int;
     }
 
+    public void ShieldReady()
+    {
+        shield.text = "Shield Ready!";
+    }
+
+    public void ShieldNotReady()
+    {
+        shield.text = "";
+    }
+
     public void AddScore (int newScoreValue)
     {
         score_int += newScoreValue;
         ScoreUpdate();
+    }
+
+    public void CloseStartScreen()
+    {
+        start.text = "";
     }
 
 

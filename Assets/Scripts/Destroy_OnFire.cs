@@ -34,9 +34,22 @@ public class Destroy_OnFire : MonoBehaviour {
             //update score
             gameController.AddScore(scoreValue);
             
+        }
+
+        if (other.tag == "Shield")
+        {
+          //  Destroy(other.gameObject);
+            Destroy(gameObject);
+            GameObject clone = Instantiate(asteroid_explosion, transform.position, transform.rotation) as GameObject;
+            Destroy(clone, 2);
+
+            //update score
+            gameController.AddScore(scoreValue);
+
 
 
         }
+
 
         else if (other.tag == "Player")
         {
@@ -44,6 +57,7 @@ public class Destroy_OnFire : MonoBehaviour {
             GameObject clone = Instantiate(player_death_explosion, transform.position, transform.rotation) as GameObject;
             Destroy (clone, 2);
             gameController.GameOver(); // call game over on player death 
+
         }
 
         else if (other.tag == "AsteroidHuge")

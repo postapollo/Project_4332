@@ -15,12 +15,53 @@ public class AsteroidHugeScript : MonoBehaviour {
     public Vector3 offset2 = new Vector3(0, 0, 0);
     public float offsetBump;
     public float offsetBump2;
+    int health = 5;
+    
+
+    void Start()
+    {
+        
+        GameObject gameControllerOBject = GameObject.FindWithTag("GameController");
+        if (gameControllerOBject != null)
+        {
+            gameController = gameControllerOBject.GetComponent<ControllerScript>();
+        }
+        else
+        {
+            //exit
+        }
+    }
 
 
     void OnTriggerEnter(Collider other)
     {
 
         if (other.tag == "Laser")
+        {
+            if (health != 0)
+           {
+                health--;
+                Destroy(other.gameObject);
+            }
+            else
+            {
+
+                Destroy(other.gameObject);
+                Destroy(gameObject);
+                InstantiateAsteroidBaby(); //call to product a lot more astroids 
+                GameObject clone = Instantiate(asteroid_explosion, transform.position, transform.rotation) as GameObject;
+                Destroy(clone, 2);
+                GameObject clone2 = Instantiate(asteroid_explosion2, transform.position, transform.rotation) as GameObject;
+                Destroy(clone2, 2);
+
+                //update score
+                gameController.AddScore(scoreValue);
+            }
+
+
+        }
+
+        else if (other.tag == "Shield")
         {
             Destroy(other.gameObject);
             Destroy(gameObject);
@@ -32,9 +73,6 @@ public class AsteroidHugeScript : MonoBehaviour {
 
             //update score
             gameController.AddScore(scoreValue);
-
-
-
         }
 
         else if (other.tag == "Player")

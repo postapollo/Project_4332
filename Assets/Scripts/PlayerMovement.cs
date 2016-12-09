@@ -15,17 +15,9 @@ public class GameBoundary
 
 public class PlayerMovement : MonoBehaviour {
 
-    public Rigidbody rb;
-   // public SphereCollider collider;
-    void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-        //    shield.SetActive(false);
-        //   collider = GetComponent<SphereCollider>();
-        //   collider.enabled = false;
 
-        StartCoroutine(ActivateShield());
-    }
+
+    public ControllerScript gameController;
 
     public float playerSpeed;
     public float tilt;
@@ -39,19 +31,45 @@ public class PlayerMovement : MonoBehaviour {
 
     //secondary weapon
     public GameObject shield;
-    public float secondaryTimer;
+    int secondaryTimer = 2;
     private float nextFire;
     public bool on = false;
     public bool ready = false;
 
 
+    public Rigidbody rb;
+   // public SphereCollider collider;
+    void Start()
+    {
+        StartCoroutine(ActivateShield());
+        rb = GetComponent<Rigidbody>();
+
+        //needed for shield 
+        GameObject gameControllerOBject = GameObject.FindWithTag("GameController");
+        if (gameControllerOBject != null)
+        {
+            gameController = gameControllerOBject.GetComponent<ControllerScript>();
+        }
+        else
+        {
+            //exit
+        }
+
+    }
+
+
     //done before updating the frame, every frame, primary fire
     void Update()
     {
-       // ActivateShield();
-       // var delay = 2.0;
+
+        
+
+        
+        // ActivateShield();
+        // var delay = 2.0;
         if (Input.GetButton("Fire1") && Time.time > nextFire)
         {
+            gameController.CloseStartScreen();
             nextFire = Time.time + fireRate;
             GameObject clone = 
             Instantiate(shot, laser_spawn.position, laser_spawn.rotation) as GameObject;
@@ -69,29 +87,39 @@ public class PlayerMovement : MonoBehaviour {
   
         if (ready)
         {
-         //   if (Input.GetKeyDown(KeyCode.Space))
-         //   {
+            gameController.ShieldReady();
+           if (Input.GetKey(KeyCode.Space))
+            {
                 
-           //     shield.SetActive(true);
-         //   }
+                ready = false;
+                gameController.ShieldNotReady();
+                GameObject clone =
+                Instantiate(shield, laser_spawn.position, laser_spawn.rotation) as GameObject;
+                
+
+                Destroy(clone, 3);
+                
+                secondaryTimer += 2;
+            }
         }
-
-
+        else
+        {
+            
+            //nothing happens when press Input.GetKey(KeyCode.Space))
+        }
+        
     }
 
     IEnumerator ActivateShield()
     {
-      //  ready = false;
-      //  shield.SetActive(false);
-       yield return new WaitForSeconds(1);
-        //   if (Input.GetKeyDown(KeyCode.Space))
-        //       on = !on;
-        //    if (on)
-        //        shield.SetActive(true);
-        //    else if (!on)
-        //        shield.SetActive(false);
-        ready = true;
-        secondaryTimer += 2;
+
+        while (true)
+        {
+            //ActivateShield();
+            yield return new WaitForSeconds(secondaryTimer);
+
+            ready = true;
+        }
 
     }
 

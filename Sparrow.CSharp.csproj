@@ -75,7 +75,6 @@
     <Compile Include="Assets\Imported\PyroParticles\Prefab\Script\FireProjectileScript.cs" />
     <Compile Include="Assets\Imported\PyroParticles\Prefab\Script\MeteorSwarmScript.cs" />
     <Compile Include="Assets\Imported\PyroParticles\Prefab\Script\SingleLineAttribute.cs" />
-    <Compile Include="Assets\Imported\TutorialInfo\Scripts\TutorialInfo.cs" />
     <Compile Include="Assets\Imported\omega_fighter_01\script\MouseLook.cs" />
     <Compile Include="Assets\Scripts\AsteroidHugeScript.cs" />
     <Compile Include="Assets\Scripts\Asteroid_Script.cs" />
@@ -90,21 +89,10 @@
     <Compile Include="Assets\Scripts\PlayerLaser.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\ShieldScript.cs" />
-    <Compile Include="Assets\_Completed-Assets\Scripts\Done_BGScroller.cs" />
-    <Compile Include="Assets\_Completed-Assets\Scripts\Done_DestroyByBoundary.cs" />
-    <Compile Include="Assets\_Completed-Assets\Scripts\Done_DestroyByContact.cs" />
-    <Compile Include="Assets\_Completed-Assets\Scripts\Done_DestroyByTime.cs" />
-    <Compile Include="Assets\_Completed-Assets\Scripts\Done_EvasiveManeuver.cs" />
-    <Compile Include="Assets\_Completed-Assets\Scripts\Done_GameController.cs" />
-    <Compile Include="Assets\_Completed-Assets\Scripts\Done_Mover.cs" />
-    <Compile Include="Assets\_Completed-Assets\Scripts\Done_PlayerController.cs" />
-    <Compile Include="Assets\_Completed-Assets\Scripts\Done_RandomRotator.cs" />
-    <Compile Include="Assets\_Completed-Assets\Scripts\Done_WeaponController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Imported\PyroParticles\Prefab\Materials\AdditiveTintable.shader" />
     <None Include="Assets\Imported\PyroParticles\Readme.txt" />
-    <None Include="Assets\Imported\TutorialInfo\Fonts\LICENSE.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
