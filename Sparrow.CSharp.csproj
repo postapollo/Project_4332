@@ -77,6 +77,7 @@
     <Compile Include="Assets\Imported\PyroParticles\Prefab\Script\SingleLineAttribute.cs" />
     <Compile Include="Assets\Imported\TutorialInfo\Scripts\TutorialInfo.cs" />
     <Compile Include="Assets\Imported\omega_fighter_01\script\MouseLook.cs" />
+    <Compile Include="Assets\Scripts\AsteroidHugeScript.cs" />
     <Compile Include="Assets\Scripts\Asteroid_Script.cs" />
     <Compile Include="Assets\Scripts\ControllerScript.cs" />
     <Compile Include="Assets\Scripts\Crate_Script.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Assets\Scripts\Mover_Angular.cs" />
     <Compile Include="Assets\Scripts\PlayerLaser.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\ShieldScript.cs" />
     <Compile Include="Assets\_Completed-Assets\Scripts\Done_BGScroller.cs" />
     <Compile Include="Assets\_Completed-Assets\Scripts\Done_DestroyByBoundary.cs" />
     <Compile Include="Assets\_Completed-Assets\Scripts\Done_DestroyByContact.cs" />

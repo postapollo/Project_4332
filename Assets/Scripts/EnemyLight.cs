@@ -31,10 +31,6 @@ public class EnemyLight : MonoBehaviour {
             //exit
         }
 
-        
-      
-        
-
     }
 
 
@@ -55,21 +51,35 @@ public class EnemyLight : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
 
-      //  if (other.tag == "Laser")
-      //  {
-            Destroy(other.gameObject);
-            Destroy(gameObject);
-            GameObject clone = Instantiate(enemyLightExplosion, transform.position, transform.rotation) as GameObject;
-            Destroy(clone, 2);
+   //     if (other.tag == "Asteroid")
+   //     {
+    //        Destroy(other.gameObject);
+         //   Destroy(gameObject);
+         //   GameObject clone = Instantiate(enemyLightExplosion, transform.position, transform.rotation) as GameObject;
+        //    Destroy(clone, 2);
 
             //update score
-            gameController.AddScore(scoreValue);
+          //  gameController.AddScore(scoreValue);
 
 
 
     //    }
 
-         if (other.tag == "Player")
+        if (other.tag == "AsteroidHuge")
+        {
+            Destroy(gameObject);
+            //   Destroy(gameObject);
+              GameObject clone = Instantiate(enemyLightExplosion, transform.position, transform.rotation) as GameObject;
+              Destroy(clone, 2);
+
+            //update score
+            //  gameController.AddScore(scoreValue);
+
+
+
+        }
+
+        if (other.tag == "Player")
         {
             Destroy(other.gameObject);
             GameObject clone2 = Instantiate(player_death_explosion, transform.position, transform.rotation) as GameObject;
@@ -79,7 +89,13 @@ public class EnemyLight : MonoBehaviour {
 
         else
         {
-            return; //we only want to destroy the asteroid if it is hit with player laser 
+         //   Destroy(other.gameObject);
+            Destroy(gameObject);
+            GameObject clone = Instantiate(enemyLightExplosion, transform.position, transform.rotation) as GameObject;
+            Destroy(clone, 2);
+
+            //update score
+        //    gameController.AddScore(scoreValue);
         }
     }
 

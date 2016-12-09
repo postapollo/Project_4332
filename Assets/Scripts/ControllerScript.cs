@@ -8,6 +8,7 @@ public class ControllerScript : MonoBehaviour {
     public GameObject enemy_Bomber;
     public GameObject enemy_Light;
     public GameObject hard_Asteroid;
+    public GameObject huge_Asteroid;
     public GameObject crate_Object;
     public GameObject crate_copy;
     public Vector3 spawn_vector;
@@ -28,6 +29,8 @@ public class ControllerScript : MonoBehaviour {
     public float new_game_wait;
     public float hard_asteroid_wait;
     public float waitForNextRound;
+    public float waitForThirdRound;
+   // public float waitForHugeAsteroid;
 
     void Start()
     {
@@ -80,18 +83,24 @@ public class ControllerScript : MonoBehaviour {
                 Destroy (clone, 5);
 
             }
-            yield return new WaitForSeconds(waitForNextRound);
-            StartCoroutine(SpawnEnemyBomber());
-
+            
             for (int j = 0; j < 3; j++)
-
             {
                 Quaternion spawnRotation = Quaternion.identity;
                 Vector3 spawnPosition2 = new Vector3(spawn_vector.x, spawn_vector.y, Random.Range(spawn_vector.z, -spawn_vector.z));
                 GameObject clone2 = Instantiate(enemy_Light, spawnPosition2, spawnRotation) as GameObject;
                 Destroy(clone2, 10);
 
+                
+
             }
+            yield return new WaitForSeconds(waitForNextRound);
+            StartCoroutine(SpawnEnemyBomber());
+
+            yield return new WaitForSeconds(waitForThirdRound);
+            StartCoroutine(SpawnHugeAsteroid());
+
+
 
         }
         if (playerAlive == false)
@@ -113,6 +122,18 @@ public class ControllerScript : MonoBehaviour {
         Destroy(clone3, 15);
 
     }
+
+
+    IEnumerator SpawnHugeAsteroid()
+    {
+        yield return new WaitForSeconds(2);
+        Vector3 spawnPosition = new Vector3(spawn_vector.x, spawn_vector.y, Random.Range(spawn_vector.z, -spawn_vector.z));
+        Quaternion spawnRotation = Quaternion.identity;
+        GameObject clone3 = Instantiate(huge_Asteroid, spawnPosition, spawnRotation) as GameObject;
+        Destroy(clone3, 10);
+
+    }
+
 
     void Update()
     {

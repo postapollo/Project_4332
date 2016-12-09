@@ -46,8 +46,26 @@ public class Destroy_OnFire : MonoBehaviour {
             gameController.GameOver(); // call game over on player death 
         }
 
+        else if (other.tag == "AsteroidHuge")
+        {
+          //  Destroy(other.gameObject);
+            Destroy(gameObject);
+            GameObject clone = Instantiate(asteroid_explosion, transform.position, transform.rotation) as GameObject;
+            Destroy(clone, 2);
+        }
+
+        else if (other.tag == "EnemyLight")
+        {
+           // Destroy(other.gameObject);
+            Destroy(gameObject);
+            GameObject clone = Instantiate(asteroid_explosion, transform.position, transform.rotation) as GameObject;
+            Destroy(clone, 2);
+        }
+
+
         else
         {
+
             return; //we only want to destroy the asteroid if it is hit with player laser 
         }
     }
