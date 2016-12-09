@@ -9,6 +9,6 @@ public class Asteroid_Script : MonoBehaviour {
     void Start()
     {
         asteroid_rb = GetComponent<Rigidbody>();
-        asteroid_rb.angularVelocity = Random.insideUnitSphere * 3 ;
+        asteroid_rb.angularVelocity = Random.insideUnitSphere * 2 ;
     }
 }

@@ -6,10 +6,12 @@ public class ControllerScript : MonoBehaviour {
     //need to spawn game object 
     public GameObject enemy_Object;
     public GameObject enemy_Bomber;
+    public GameObject enemy_Light;
     public GameObject hard_Asteroid;
     public GameObject crate_Object;
     public GameObject crate_copy;
     public Vector3 spawn_vector;
+    
 
     public GUIText score;
     public int score_int; //score update
@@ -40,10 +42,20 @@ public class ControllerScript : MonoBehaviour {
         StartCoroutine(Spawn());
         StartCoroutine(SpawnCrateTimer());
         StartCoroutine(SpawnHardAsteroids());
-        
+        StartCoroutine(ScoreBumper());
 
         
 
+    }
+
+    IEnumerator ScoreBumper()
+    {
+        while (playerAlive == true)
+        {
+            yield return new WaitForSeconds(1);
+            score_int++;
+            ScoreUpdate();
+        }
     }
 
     public void GameOver()
@@ -66,10 +78,21 @@ public class ControllerScript : MonoBehaviour {
                 yield return new WaitForSeconds(asteroid_wait);
 
                 Destroy (clone, 5);
-                
+
             }
             yield return new WaitForSeconds(waitForNextRound);
             StartCoroutine(SpawnEnemyBomber());
+
+            for (int j = 0; j < 3; j++)
+
+            {
+                Quaternion spawnRotation = Quaternion.identity;
+                Vector3 spawnPosition2 = new Vector3(spawn_vector.x, spawn_vector.y, Random.Range(spawn_vector.z, -spawn_vector.z));
+                GameObject clone2 = Instantiate(enemy_Light, spawnPosition2, spawnRotation) as GameObject;
+                Destroy(clone2, 10);
+
+            }
+
         }
         if (playerAlive == false)
         {
