@@ -12,5 +12,6 @@ Project features:
 -	Different scoring per enemy type, plus additional increasing survival score
 -	Music
 -	3D bloom effects, explosions, sound from effects and enemy and character destruction 
+- Good memory management: every game object is automatically cleaned up, no memory leaks from long game runs
 
 
